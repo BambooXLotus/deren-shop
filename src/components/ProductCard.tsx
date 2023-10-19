@@ -5,17 +5,27 @@ import { IconButton } from "@/components/ui/IconButton";
 import { type Product } from "@/types";
 import { Expand, ShoppingCart } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type ProductCardProps = {
   data: Product;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
+  const router = useRouter();
+
+  function handleClick() {
+    router.push(`/product/${data.id}`);
+  }
+
   return (
-    <div className="group cursor-pointer space-y-4 rounded-xl border bg-white p-3">
+    <div
+      className="group cursor-pointer space-y-4 rounded-xl border bg-white p-3"
+      onClick={handleClick}
+    >
       <div className="relative aspect-square rounded-xl bg-gray-100">
         <Image
-          src={data?.images?.[0]?.url}
+          src={data.images[0].url}
           fill
           alt="Image"
           className="aspect-square rounded-md object-cover"
