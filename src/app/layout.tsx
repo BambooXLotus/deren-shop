@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { ModalProvider } from "@/providers/ModalProvider";
 import "@/styles/globals.css";
 
 import { Urbanist } from "next/font/google";
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        <ModalProvider />
         <Navbar />
         {children}
         <Footer />
