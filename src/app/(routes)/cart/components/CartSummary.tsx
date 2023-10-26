@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "@/components/ui/Button";
 import { Currency } from "@/components/ui/Currency";
 import useCart from "@/hooks/use-cart";
@@ -37,12 +39,11 @@ export const CartSummary: React.FC<CartSummaryProps> = () => {
   async function onCheckout() {
     const productIds = items.map((item) => item.id);
 
-    const response = await axios.post<CheckoutResponse>(
-      `${process.env.API_URL}/checkout`,
-      {
-        productIds,
-      },
-    );
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
+
+    const response = await axios.post<CheckoutResponse>(`${apiUrl}/checkout`, {
+      productIds,
+    });
 
     window.location = response.data.url;
   }
